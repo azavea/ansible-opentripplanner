@@ -1,0 +1,35 @@
+---
+- name: Install maven
+  apt: pkg=maven state=present
+
+- name: Download OpenTripPlanner
+  git: repo={{ otp_repo }}
+       dest={{ otp_bin_dir }}
+       version={{ otp_version }}
+
+- name: Compile OpenTripPlanner
+  command: mvn clean package -DskipTests
+           chdir={{ otp_bin_dir }}
+           creates={{ otp_bin_dir }}/otp-core/target/otp.jar
+
+- name: Create service account for OpenTripPlanner
+  user: name={{ otp_user }}
+        system=yes
+        home=/var/lib/{{ otp_user }}
+        shell=/bin/false
+        state=present
+
+- name: Install upstart service
+  template: src=otp.conf.j2 dest=/etc/init/otp.conf
+  notify: Restart OpenTripPlanner
+
+- name: Create data directory
+  file: path={{ otp_data_dir }} mode=0775 state=directory
+
+- name: Download OSM Data
+  get_url: url={{ otp_osm_source_url }}
+           dest={{ otp_osm_filename }}
+
+- name: Save graph-config.xml
+  template: src=graph-config.xml.j2 dest={{ otp_data_dir }}/graph-config.xml
+  notify: Build OTP Graph

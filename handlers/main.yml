@@ -1,0 +1,7 @@
+- name: Restart OpenTripPlanner
+  service: name=otp state=restarted
+
+- name: Build OTP Graph
+  command: "{{ otp_bin_dir }}/build-old {{ otp_data_dir }}/graph-config.xml
+            chdir={{ otp_bin_dir }}"
+  notify: Restart OpenTripPlanner

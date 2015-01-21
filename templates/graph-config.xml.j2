@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    NOTICE: This file is written by ansible, and any changes made here will be overridden on next
+            provision. Modify azavea.opentripplanner/templates/graph-config.xml.j2 to make changes stick.
+-->
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
@@ -9,6 +13,7 @@
                 <property name="bundles">
                     <list>
                         <!--
+                        TODO: Load gtfs feeds via config in defaults.yml
                         <bean class="org.opentripplanner.graph_builder.model.GtfsBundle">
                             <property name="path" value="{{ otp_data_dir }}/septa_rail.zip" />
                             <property name="defaultAgencyId" value="SEPTA" />
@@ -48,9 +53,7 @@
         <property name="graphBuilders">
             <list>
                 <!-- GTFS comes before OSM, because we use the loaded set of stops to determine our OSM coverage -->
-                <!--
                 <ref bean="gtfsBuilder" />
-                -->
                 <ref bean="osmBuilder" />
                 <ref bean="transitStreetLink" />
             </list>

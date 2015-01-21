@@ -9,5 +9,5 @@ setuid {{ otp_user }}
 
 chdir {{ otp_bin_dir }}
 script
-    exec ./otp -a --graphs {{ otp_data_dir }} --server
+    exec /usr/bin/java -Xmx{{otp_process_mem}} -Xverify:none -jar ./otp-core/target/otp.jar -s -p {{ otp_web_port }} -g {{ otp_data_dir }}
 end script

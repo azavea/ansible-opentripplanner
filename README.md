@@ -9,19 +9,21 @@ An Ansible role for installing Open Trip Planner
 - `otp_version` - Commit to pull from (default: `339c1deb1daaa5edb63cbcd738318591ad9a61c7`, 0.11.x branch)
 - `otp_user` - OTP default user (default: `opentripplanner`)
 - `otp_osm_source_url` - OSM data url to load into OTP (default: See Example section below)
+- `otp_process_mem` - JVM maximum memory, passed directly to the JVM -Xmx option (default: `3G`, e.g. 3 gigabytes)
+- `otp_web_port` - Port to serve the OTP webapp/API on (default: `8080`)
 - `upstart_start_on` - Upstart job, passed directly to 'start on' (default: `(filesystem and net-device-up IFACE=lo)`)
 
 ## Example Playbook
 
 See the [examples](./examples/) directory. After a `vagrant up` Open Trip Planner will be running on localhost:8080.
 
-### VM Prerequisites
+### Open Trip Planner memory usage
 
-The Open Trip Planner java VM requires at least 1.5Gb of memory. The graph builder to construct the OSM graph requires a little more.
+OTP memory usage depends on the graph size. Once loaded, the graph will take up a constant amount of space in memory, so it's easy enough to simply load the graph to see how big it is. When it's initially loading, though, it will temporarily spike to consume a greater amount, so it's good to leave some headroom in the `otp_process_mem` variable.
 
-The example VM in this repo is configured to use 3Gb, which should be enough to compile and build a graph for a medium sized city.
+The default graph (Philadelphia) will load using about 2Gb, so the default `otp_process_mem` value of 3Gb provides ample headroom for the JVM to operate.
 
-If you encounter a java OutOfMemory exception while provisioning, consider bumping your vm memory in the Vagrantfile.
+If you encounter a java OutOfMemory exception while provisioning, you should bump the value of `otp_process_mem` and the memory of your VM until the graph you have selected loads.
 
 ### Loading OSM Data
 

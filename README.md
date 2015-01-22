@@ -7,6 +7,7 @@ An Ansible role for installing Open Trip Planner
 - `otp_data_dir` - Local directory to store OTP data (default: `/var/otp`)
 - `otp_repo` - Git repo to pull source from (default: `https://github.com/opentripplanner/OpenTripPlanner`)
 - `otp_version` - Commit to pull from (default: `339c1deb1daaa5edb63cbcd738318591ad9a61c7`, 0.11.x branch)
+- `otp_jarfile` - JAR file to run in daemon, relative to `otp_bin_dir` (default: `./otp-core/target/otp.jar`, 0.11.x branch)
 - `otp_user` - OTP default user (default: `opentripplanner`)
 - `otp_process_mem` - JVM maximum memory, passed directly to the JVM -Xmx option (default: `3G`, e.g. 3 gigabytes)
 - `otp_web_port` - Port to serve the OTP webapp/API on (default: `8080`)
@@ -31,5 +32,5 @@ It is important to note that Open Trip Planner does not function without some so
 However, data should be added to the `otp_data_dir` so that it can be found by OTP.
 
 See these two wiki links to learn how to load data into OTP:
-https://github.com/opentripplanner/OpenTripPlanner/wiki/Minimal-Introduction
-https://github.com/opentripplanner/OpenTripPlanner/wiki/FiveMinutes
+ - https://github.com/opentripplanner/OpenTripPlanner/wiki/Minimal-Introduction
+ - https://github.com/opentripplanner/OpenTripPlanner/wiki/FiveMinutes

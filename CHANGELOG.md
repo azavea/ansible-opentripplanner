@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Add `otp_jarfile` parameter
+
 ## 0.2.0
 
 - Do not include data-config.xml and associated OSM download with the role,

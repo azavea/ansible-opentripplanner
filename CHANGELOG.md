@@ -1,3 +1,7 @@
+## 0.2.2
+
+Enable OTP analyst with jarfile -a flag by default
+
 ## 0.2.1
 
 - Add `otp_jarfile` parameter

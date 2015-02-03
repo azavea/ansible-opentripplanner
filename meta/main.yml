@@ -15,4 +15,4 @@ galaxy_info:
 
 dependencies:
   - { role: "azavea.git" }
-  - { role: "azavea.java" }
+  - { role: "azavea.oracle-java" }

@@ -4,8 +4,8 @@ otp_data_dir: /var/otp
 otp_user: opentripplanner
 otp_repo: https://github.com/opentripplanner/OpenTripPlanner
 # 0.11.x branch
-otp_version: 339c1deb1daaa5edb63cbcd738318591ad9a61c7
-otp_jarfile: ./otp-core/target/otp.jar
+otp_version: opentripplanner-0.13.0
+otp_jarfile: ./otp-core/target/otp-0.13.0.jar
 # 0.13+ branch sample, must match current version number
 # otp_jarfile: ./target/otp-0.13.0.jar
 upstart_start_on: '(filesystem and net-device-up IFACE=lo)'

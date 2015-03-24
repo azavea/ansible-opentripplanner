@@ -1,3 +1,7 @@
+## 0.3.1
+
+Enable bytecode validation
+
 ## 0.3.0
 
 Update to default to 0.13 release version

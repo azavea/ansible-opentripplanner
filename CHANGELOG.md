@@ -1,3 +1,19 @@
+## 0.3.1
+
+Enable bytecode validation
+
+## 0.3.0
+
+Update to default to 0.13 release version
+
+## 0.2.4
+
+Use original Java role, which now supports Oracle Java.
+
+## 0.2.3
+
+Use Oracle Java
+
 ## 0.2.2
 
 Enable OTP analyst with jarfile -a flag by default

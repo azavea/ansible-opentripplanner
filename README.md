@@ -12,7 +12,7 @@ An Ansible role for installing Open Trip Planner
 - `otp_process_mem` - JVM maximum memory, passed directly to the JVM -Xmx option (default: `3G`, e.g. 3 gigabytes)
 - `otp_web_port` - Port to serve the OTP webapp/API on (default: `8080`)
 - `upstart_start_on` - Upstart job, passed directly to 'start on' (default: `(filesystem and net-device-up IFACE=lo)`)
-- `otp_session_timeout` - Number of seconds before OTP requests time out (default: 30)
+- `otp_session_timeout_s` - Number of seconds before OTP requests time out (default: 30)
 
 ## Example Playbook
 

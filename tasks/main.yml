@@ -1,4 +1,7 @@
 ---
+- name: Stop OpenTripPlanner
+  service: name=otp state=stopped
+
 - name: Install maven
   apt: pkg=maven state=present
 

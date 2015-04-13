@@ -1,3 +1,8 @@
+## 0.3.2
+
+ - Allow for session timeout configuration
+ - Stop service before compiling
+
 ## 0.3.1
 
 Enable bytecode validation

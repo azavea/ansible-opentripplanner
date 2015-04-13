@@ -1,4 +1,12 @@
 ---
+- name: Check if OpenTripPlanner service exists
+  stat: path=/etc/init/otp.conf
+  register: otp_service
+
+- name: Stop OpenTripPlanner
+  service: name=otp state=stopped
+  when: otp_service.stat.exists
+
 - name: Install maven
   apt: pkg=maven state=present
 
@@ -6,6 +14,12 @@
   git: repo={{ otp_repo }}
        dest={{ otp_bin_dir }}
        version={{ otp_version }}
+
+- name: Set OpenTripPlanner session timeout
+  lineinfile: dest={{ otp_bin_dir }}/src/client/WEB-INF/web.xml
+              regexp="(^|\W)<session-timeout>30</session-timeout>$"
+              line="\t\t<session-timeout>{{ otp_session_timeout_s }}</session-timeout>"
+  when: otp_session_timeout_s is defined
 
 - name: Compile OpenTripPlanner
   command: mvn clean package -DskipTests

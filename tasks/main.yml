@@ -7,6 +7,10 @@
        dest={{ otp_bin_dir }}
        version={{ otp_version }}
 
+- name: Set OpenTripPlanner Session Timeout
+  lineinfile: dest={{ otp_bin_dir }}/src/client/WEB-INF/web.xml regexp="(^|\W)<session-timeout>30</session-timeout>$" line="\t\t<session-timeout>{{ otp_session_timeout }}</session-timeout>"
+  when: otp_session_timeout is defined
+
 - name: Compile OpenTripPlanner
   command: mvn clean package -DskipTests
            chdir={{ otp_bin_dir }}

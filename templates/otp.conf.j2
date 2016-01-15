@@ -9,5 +9,5 @@ setuid {{ otp_user }}
 
 chdir {{ otp_bin_dir }}
 script
-    exec /usr/bin/java -Xmx{{otp_process_mem}} -jar {{ otp_jarfile }} -s -a -p {{ otp_web_port }} -g {{ otp_data_dir }}
+    exec /usr/bin/java -Xmx{{otp_process_mem}} -jar {{ otp_bin_dir }}/otp-{{ otp_version }}.jar --server --analyst --port {{ otp_web_port }} --graphs {{ otp_data_dir }}
 end script

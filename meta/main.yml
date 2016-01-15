@@ -1,7 +1,7 @@
 ---
 
 galaxy_info:
-  author: Andrew Fink
+  author: Kathryn Killebrew
   description: An Ansible role for installing Open Trip Planner.
   company: Azavea Inc.
   license: Apache

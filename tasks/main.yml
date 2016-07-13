@@ -1,6 +1,6 @@
 ---
 - name: Check if OpenTripPlanner service exists
-  stat: path=/etc/init/otp.conf
+  stat: path=/lib/systemd/system/otp.service
   register: otp_service
 
 - name: Stop OpenTripPlanner
@@ -10,9 +10,13 @@
 - name: Create OpenTripPlanner binary directory
   file: path={{ otp_bin_dir }} mode=0775 state=directory
 
+- name: Store derived jarfile name for convenience
+  set_fact: otp_jar_name=otp-{{ otp_version }}{{ otp_jar_suffix }}.jar
+
 - name: Download OpenTripPlanner
-  get_url: url=http://maven.conveyal.com.s3.amazonaws.com/org/opentripplanner/otp/{{ otp_version }}/otp-{{ otp_version }}.jar
-           dest={{ otp_bin_dir }}
+  get_url: url=http://maven.conveyal.com.s3.amazonaws.com/org/opentripplanner/otp/{{ otp_version }}/{{ otp_jar_name }}
+           dest={{ otp_bin_dir }}/{{ otp_jar_name }}
+           checksum=sha1:{{ otp_jar_sha1 }}
            mode=0775
 
 - name: Create service account for OpenTripPlanner
@@ -25,6 +29,14 @@
 - name: Create data directory
   file: path={{ otp_data_dir }} mode=0775 state=directory
 
-- name: Install upstart service
-  template: src=otp.conf.j2 dest=/etc/init/otp.conf
+- name: Install service config
+  template: src=otp.service.j2 dest=/lib/systemd/system/otp.service
   notify: Restart OpenTripPlanner
+  register: otp_service_config
+
+  # We need to reload systemd config for it to see changes.  This (and the 'register' just above)
+  # will not be necessary in Ansible 2.2 because there will be a 'systemd' module with a
+  # 'daemon_reload' option that we can use instead of 'service'.
+- name: Notify systemd of service config changes
+  command: systemctl daemon-reload
+  when: otp_service_config.changed

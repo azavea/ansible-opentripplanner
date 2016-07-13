@@ -2,7 +2,10 @@
 otp_bin_dir: /opt/opentripplanner
 otp_data_dir: /var/otp
 otp_user: opentripplanner
-otp_version: 0.15.0
-upstart_start_on: '(filesystem and net-device-up IFACE=lo)'
+otp_version: 0.20.0
+otp_jar_suffix: '-shaded'
+otp_jar_sha1: '46f2b665cda68ecf529e8aef00c74e6a67c635a5'
 otp_process_mem: 3G
 otp_web_port: 8080
+otp_service_after: 'network-online.target'
+otp_service_wantedby: 'multi-user.target'

@@ -1,0 +1,5 @@
+- src: azavea.git
+  version: 0.1.0
+
+- src: azavea.java
+  version: 0.2.6

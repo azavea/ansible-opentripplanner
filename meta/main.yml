@@ -5,14 +5,14 @@ galaxy_info:
   description: An Ansible role for installing Open Trip Planner.
   company: Azavea Inc.
   license: Apache
-  min_ansible_version: 1.5
+  min_ansible_version: 2.0
   platforms:
   - name: Ubuntu
     versions:
-    - trusty
+    - xenial
   categories:
   - system
 
 dependencies:
   - { role: "azavea.git" }
-  - { role: "azavea.java" }
+  - { role: "azavea.java", java_major_version: "8", java_version: "8u91-*" }

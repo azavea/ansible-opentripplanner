@@ -1,3 +1,7 @@
+## 0.4.0
+
+ - Use precopiled .jars
+
 ## 0.3.2
 
  - Allow for session timeout configuration

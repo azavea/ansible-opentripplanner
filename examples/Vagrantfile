@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 if [ "up", "provision" ].include?(ARGV.first) && File.directory?("roles") &&
   !(File.directory?("roles/azavea.git") || File.symlink?("roles/azavea.git")) ||
   !(File.directory?("roles/azavea.java") || File.symlink?("roles/azavea.java"))
-  system("ansible-galaxy install --force -r roles.txt -p roles")
+  system("ansible-galaxy install --force -r roles.yml -p roles")
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

@@ -1,3 +1,10 @@
+## 1.0.0
+
+- Bump version of OpenTripPlanner to 0.20.0.
+- Use Oracle Java 8 as the default JVM.
+- Rename `upstart_start_on` variable to `otp_upstart_start_on`.
+- Bump minimum version of Ansible required to 2.0.
+
 ## 0.4.0
 
 - Use OpenTripPlanner precopiled JARs

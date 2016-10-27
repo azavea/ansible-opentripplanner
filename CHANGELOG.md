@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Bump version of JVM to `8u111*`.
+
 ## 1.0.2
 
 - Bump version of OpenTripPlanner to 1.0.0.

@@ -1,3 +1,7 @@
+## 1.0.4
+
+- Bump version of JVM to `8u121*`.
+
 ## 1.0.3
 
 - Bump version of JVM to `8u111*`.

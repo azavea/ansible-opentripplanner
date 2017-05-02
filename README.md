@@ -5,7 +5,7 @@ An Ansible role for installing Open Trip Planner
 
 - `otp_bin_dir` - Local directory to install OTP (default: `/opt/opentripplanner`)
 - `otp_data_dir` - Local directory to store OTP data (default: `/var/otp`)
-- `otp_version` - Commit to pull from (default: 1.0 release)
+- `otp_version` - Commit to pull from (default: 1.1.0 release)
 - `otp_user` - OTP default user (default: `opentripplanner`)
 - `otp_process_mem` - JVM maximum memory, passed directly to the JVM -Xmx option (default: `3G`, e.g. 3 gigabytes)
 - `otp_web_port` - Port to serve the OTP webapp/API on (default: `8080`)

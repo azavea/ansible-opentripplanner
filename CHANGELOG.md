@@ -1,3 +1,8 @@
+## 1.0.5
+
+- Bump default version of OpenTripPlanner to 1.1.0.
+- Bump version of anisible-java role to 0.4.0 in example.
+
 ## 1.0.4
 
 - Bump version of JVM to `8u121*`.

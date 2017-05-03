@@ -14,7 +14,7 @@
   set_fact: otp_jar_name=otp-{{ otp_version }}{{ otp_jar_suffix }}.jar
 
 - name: Download OpenTripPlanner
-  get_url: url=http://maven.conveyal.com.s3.amazonaws.com/org/opentripplanner/otp/{{ otp_version }}/{{ otp_jar_name }}
+  get_url: url=https://repo1.maven.org/maven2/org/opentripplanner/otp/{{ otp_version }}/{{ otp_jar_name }}
            dest={{ otp_bin_dir }}/{{ otp_jar_name }}
            checksum=sha1:{{ otp_jar_sha1 }}
            mode=0775

@@ -1,3 +1,7 @@
+## 1.0.6
+
+- Bump default version of JVM to `8u144*`.
+
 ## 1.0.5
 
 - Bump default version of OpenTripPlanner to 1.1.0.

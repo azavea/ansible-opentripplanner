@@ -18,5 +18,5 @@ dependencies:
   - role: "azavea.java"
     java_flavor: "oracle"
     java_major_version: "8"
-    java_version: "8u151*"
+    java_version: "8u161*"
     java_oracle_accept_license_agreement: True

@@ -7,7 +7,7 @@
 
   vars:
     java_major_version: "8"
-    java_version: "8u161*"
+    java_version: "8u*"
 
   roles:
     - { role: "azavea.opentripplanner" }

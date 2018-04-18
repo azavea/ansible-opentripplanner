@@ -1,3 +1,6 @@
+## 1.1.0
+- Remove Java version constraints.
+
 ## 1.0.8
 - Bump default version of JVM to `8u161*`.
 

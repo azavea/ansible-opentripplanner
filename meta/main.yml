@@ -16,5 +16,5 @@ galaxy_info:
 dependencies:
   - { role: "azavea.git" }
   - role: "azavea.java"
-    java_flavor: "oracle"
+    java_flavor: "openjdk"
     java_oracle_accept_license_agreement: True

@@ -1,11 +1,11 @@
 ---
 
 galaxy_info:
-  author: Andrew Fink
+  author: Kathryn Killebrew
   description: An Ansible role for installing Open Trip Planner.
   company: Azavea Inc.
   license: Apache
-  min_ansible_version: 1.5
+  min_ansible_version: 2.0
   platforms:
   - name: Ubuntu
     versions:
@@ -15,4 +15,6 @@ galaxy_info:
 
 dependencies:
   - { role: "azavea.git" }
-  - { role: "azavea.java" }
+  - role: "azavea.java"
+    java_flavor: "openjdk"
+    java_oracle_accept_license_agreement: True

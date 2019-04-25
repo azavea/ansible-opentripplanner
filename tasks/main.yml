@@ -1,16 +1,23 @@
 ---
-- name: Install maven
-  apt: pkg=maven state=present
+- name: Check if OpenTripPlanner service exists
+  stat: path=/etc/init/otp.conf
+  register: otp_service
+
+- name: Stop OpenTripPlanner
+  service: name=otp state=stopped
+  when: otp_service.stat.exists
+
+- name: Create OpenTripPlanner binary directory
+  file: path={{ otp_bin_dir }} mode=0775 state=directory
+
+- name: Store derived jarfile name for convenience
+  set_fact: otp_jar_name=otp-{{ otp_version }}{{ otp_jar_suffix }}.jar
 
 - name: Download OpenTripPlanner
-  git: repo={{ otp_repo }}
-       dest={{ otp_bin_dir }}
-       version={{ otp_version }}
-
-- name: Compile OpenTripPlanner
-  command: mvn clean package -DskipTests
-           chdir={{ otp_bin_dir }}
-           creates={{ otp_bin_dir }}/otp-core/target/otp.jar
+  get_url: url=https://repo1.maven.org/maven2/org/opentripplanner/otp/{{ otp_version }}/{{ otp_jar_name }}
+           dest={{ otp_bin_dir }}/{{ otp_jar_name }}
+           checksum=sha1:{{ otp_jar_sha1 }}
+           mode=0775
 
 - name: Create service account for OpenTripPlanner
   user: name={{ otp_user }}
@@ -24,4 +31,5 @@
 
 - name: Install upstart service
   template: src=otp.conf.j2 dest=/etc/init/otp.conf
-  notify: Restart OpenTripPlanner
+  notify:
+    - Restart OpenTripPlanner

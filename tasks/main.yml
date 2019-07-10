@@ -4,9 +4,8 @@
   register: otp_service
 
 - name: Stop OpenTripPlanner
-  systemd:
-    state: stopped
-    name: otp
+  service: name=otp state=stopped
+  when: otp_service.stat.exists
 
 - name: Create OpenTripPlanner binary directory
   file: path={{ otp_bin_dir }} mode=0775 state=directory

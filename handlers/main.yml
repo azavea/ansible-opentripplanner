@@ -1,2 +1,6 @@
 - name: Restart OpenTripPlanner
-  service: name=otp state=restarted
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    name: otp
+    state: restarted

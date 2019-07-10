@@ -1,11 +1,12 @@
 ---
 - name: Check if OpenTripPlanner service exists
-  stat: path=/etc/init/otp.conf
+  stat: path=/lib/systemd/system/otp.service
   register: otp_service
 
 - name: Stop OpenTripPlanner
-  service: name=otp state=stopped
-  when: otp_service.stat.exists
+  systemd:
+    state: stopped
+    name: otp
 
 - name: Create OpenTripPlanner binary directory
   file: path={{ otp_bin_dir }} mode=0775 state=directory
@@ -29,7 +30,7 @@
 - name: Create data directory
   file: path={{ otp_data_dir }} mode=0775 state=directory
 
-- name: Install upstart service
-  template: src=otp.conf.j2 dest=/etc/init/otp.conf
+- name: Install systemd service
+  template: src=otp.service.j2 dest=/lib/systemd/system/otp.service
   notify:
     - Restart OpenTripPlanner

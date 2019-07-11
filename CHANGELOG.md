@@ -1,3 +1,11 @@
+## 2.0.0
+
+ - Switch to systemd for Xenial support
+
+## 1.2.0
+
+ - Switch to OpenJDK 11
+
 ## 1.1.1
 
 - Bump default version of OpenTripPlanner to 1.3.0.

@@ -1,6 +1,6 @@
 ---
 - name: Check if OpenTripPlanner service exists
-  stat: path=/lib/systemd/system/otp.service
+  stat: path=/etc/systemd/system/otp.service
   register: otp_service
 
 - name: Stop OpenTripPlanner
@@ -30,7 +30,7 @@
   file: path={{ otp_data_dir }} mode=0775 state=directory
 
 - name: Install systemd service
-  template: src=otp.service.j2 dest=/lib/systemd/system/otp.service
+  template: src=otp.service.j2 dest=/etc/systemd/system/otp.service
 
 - name: Enable OpenTripPlanner service
   systemd: name=otp.service enabled=yes state=started daemon_reload=yes

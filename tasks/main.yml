@@ -31,5 +31,8 @@
 
 - name: Install systemd service
   template: src=otp.service.j2 dest=/lib/systemd/system/otp.service
+
+- name: Enable OpenTripPlanner service
+  systemd: name=otp.service enabled=yes state=started daemon_reload=yes
   notify:
     - Restart OpenTripPlanner

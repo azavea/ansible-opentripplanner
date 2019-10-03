@@ -1,3 +1,7 @@
+## 2.0.1
+
+ - Bump default version of OpenTripPlanner to 1.4.0.
+
 ## 2.0.0
 
  - Switch to systemd for Xenial support
